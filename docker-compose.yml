@@ -11,6 +11,7 @@ services:
     image: semtech/mu-dispatcher:2.1.0-beta.2
     links:
       - resource:resource
+      - books:books
     volumes:
       - ./config/dispatcher:/config
   database:
@@ -21,6 +22,10 @@ services:
     volumes:
       - ./data/db:/data
       - ./config/virtuoso/virtuoso.ini:/data/virtuoso.ini
+  books:
+    image: madnificent/books-service:2.0.0
+    links:
+      - database:database
   resource:
     image: semtech/mu-cl-resources:1.23.0
     links:

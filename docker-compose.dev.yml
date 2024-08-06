@@ -2,8 +2,10 @@ version: '3.4'
 
 services:
   identifier:
+    environment:
+      DEFAULT_ACCESS_CONTROL_ALLOW_ORIGIN_HEADER: "*"
     ports:
-      - "80:80"
+      - "8899:80"
   database:
     ports:
       - "8890:8890"
