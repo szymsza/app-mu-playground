@@ -1,0 +1,37 @@
+{{page-title "People"}}
+
+<Jumbo @title="People">
+  <ul>
+    {{#if @model.length }}
+      {{#each @model as |person|}}
+        <li>
+          {{person.name}}
+          <small>{{person.age}} years old</small>
+          <button type="button" {{on "click" (fn this.removePerson person)}}>Remove</button>
+        </li>
+      {{/each}}
+    {{else}}
+      Start by adding a person...
+    {{/if}}
+  </ul>
+</Jumbo>
+<Jumbo @hideHamster="true">
+  <form {{on "submit" this.createPerson}} >
+    <dl>
+      <dt>Name</dt>
+      <dd>
+        <Input @value={{this.newName}}
+               placeholder="John Doe" />
+      </dd>
+      <dt>Age</dt>
+      <dd>
+        <Input @value={{this.newAge}}
+               placeholder="30"
+               @type="number"
+               min="0"
+               max="150" />
+      </dd>
+    </dl><br>
+    <button class="button" type="submit">Add person</button><br><br>
+  </form>
+</Jumbo>
