@@ -1,7 +1,36 @@
 {
   "version": "0.1",
   "prefixes": {
+    "foaf": "http://xmlns.com/foaf/0.1/"
   },
   "resources": {
+    "people": {
+      "name": "person",
+      "class": "foaf:Person",
+      "attributes": {
+        "name": {
+          "type": "string",
+          "predicate": "foaf:name"
+        },
+        "age": {
+          "type": "number",
+          "predicate": "foaf:age"
+        }
+      },
+      "relationships": {
+        "friends": {
+          "predicate": "foaf:knows",
+          "target": "person",
+          "cardinality": "many"
+        },
+        "friendOf": {
+          "predicate": "foaf:knows",
+          "target": "person",
+          "cardinality": "many",
+          "inverse": true
+        }
+      },
+      "new-resource-base": "https://my-application.com/people/"
+    }
   }
 }
