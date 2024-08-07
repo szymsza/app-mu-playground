@@ -11,7 +11,7 @@ export default class CustomInputComponent extends Component {
   constructor(...args) {
     super(...args);
 
-    // TODO - remove the temporary workaround for setting the initial value
+    // setTimeout just as an ugly workaround for setting a default value
     setTimeout(() => {
       let x;
       if (!this.args.value && (x = this.args.options[0])) {

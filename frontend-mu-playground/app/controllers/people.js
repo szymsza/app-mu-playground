@@ -33,11 +33,14 @@ export default class PeopleController extends Controller {
   }
 
   @action
-  createFriendship(event) {
+  async createFriendship(event) {
     event.preventDefault();
 
-    // TODO
-    console.log("Making ", this.newFriendSubject, " friends with ", this.newFriendObject);
+    const subject = await this.store.findRecord('person', this.newFriendSubject);
+    const object = await this.store.findRecord('person', this.newFriendObject);
+    const friends = await subject.friends;
+    friends.push(object);
+    subject.save();
   }
 
   get selectOptions() {
