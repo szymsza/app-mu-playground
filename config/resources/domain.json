@@ -23,14 +23,14 @@
           "target": "person",
           "cardinality": "many"
         },
-        "friendOf": {
+        "friendof": {
           "predicate": "foaf:knows",
           "target": "person",
           "cardinality": "many",
           "inverse": true
         }
       },
-      "new-resource-base": "https://my-application.com/people/"
+      "new-resource-base": "http://localhost:4200/"
     }
   }
 }
