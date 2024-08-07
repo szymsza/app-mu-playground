@@ -1,5 +1,5 @@
-import Application from 'books/app';
-import config from 'books/config/environment';
+import Application from 'frontend-mu-playground/app';
+import config from 'frontend-mu-playground/config/environment';
 import * as QUnit from 'qunit';
 import { setApplication } from '@ember/test-helpers';
 import { setup } from 'qunit-dom';

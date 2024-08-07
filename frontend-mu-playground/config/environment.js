@@ -2,7 +2,7 @@
 
 module.exports = function (environment) {
   const ENV = {
-    modulePrefix: 'books',
+    modulePrefix: 'frontend-mu-playground',
     environment,
     rootURL: '/',
     locationType: 'history',

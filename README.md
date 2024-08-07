@@ -1,4 +1,4 @@
-# mu-project
+# app-mu-playground
 
 ### Boot up the system
 
@@ -8,7 +8,7 @@ Boot up the microservices
     
 Boot up the frontend
 
-    eds --proxy http://host:8899
+    cd frontend-mu-playground && eds --proxy http://host:8899
 
 Restart the dispatcher if necessary
 

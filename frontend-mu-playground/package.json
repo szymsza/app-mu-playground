@@ -1,8 +1,8 @@
 {
-  "name": "books",
+  "name": "frontend-mu-playground",
   "version": "0.0.0",
   "private": true,
-  "description": "Small description for books goes here",
+  "description": "Small description for frontend-mu-playground goes here",
   "repository": "",
   "license": "MIT",
   "author": "",
