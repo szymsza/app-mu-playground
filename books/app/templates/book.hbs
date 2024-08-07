@@ -1,0 +1,35 @@
+{{page-title "Book"}}
+
+<Jumbo @title="Books">
+  <ul>
+    {{#if @model.length }}
+      {{#each @model as |book|}}
+        <li>
+          {{book.title}}
+          <small>{{book.isbn}}</small>
+          <button type="button" {{on "click" (fn this.removeBook book)}}>Remove</button>
+        </li>
+      {{/each}}
+    {{else}}
+      Start by adding a book...
+    {{/if}}
+  </ul>
+</Jumbo>
+<Jumbo @hideHamster="true">
+  <form {{on "submit" this.createBook}} >
+    <dl>
+      <dt>Book title</dt>
+      <dd>
+        <Input @value={{this.newTitle}}
+               placeholder="Thinking Fast and Slow" />
+      </dd>
+      <dt>ISBN</dt>
+      <dd>
+        <Input @value={{this.newIsbn}}
+               placeholder="978-0374533557" />
+      </dd>
+    </dl><br>
+    <button class="button" type="submit">Create</button><br><br>
+  </form>
+  <LinkTo @route="index" class="button">Home</LinkTo>
+</Jumbo>

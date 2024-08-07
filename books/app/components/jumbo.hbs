@@ -1,0 +1,9 @@
+<div class="jumbo">
+  {{#unless @hideHamster }}
+    <div class="right tomster"></div>
+  {{/unless}}
+  {{#if @title }}
+    <h2>{{ @title }}</h2>
+  {{/if}}
+  {{yield}}
+</div>
