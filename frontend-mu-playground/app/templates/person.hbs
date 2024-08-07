@@ -1,0 +1,8 @@
+{{page-title "Person detail of " @model.name}}
+
+<Jumbo @title={{@model.name}}>
+  <ul>
+    <li>Age: {{@model.age}}</li>
+    <button type="button" {{on "click" (fn this.removePerson @model)}}>Remove</button>
+  </ul>
+</Jumbo>
