@@ -34,6 +34,33 @@
                max="150" />
       </dd>
     </dl><br>
-    <button class="button" type="submit">Add person</button><br><br>
+    <button class="button" type="submit">Add person</button>
   </form>
+</Jumbo>
+<Jumbo @hideHamster="true" @title="Making friends">
+  {{#if @model.length }}
+    <form {{on "submit" this.createFriendship}} >
+      <dl>
+        <dt>Let person</dt>
+        <dd>
+          <Form::Select
+            @value={{this.newFriendSubject}}
+            @onChange={{action (mut this.newFriendSubject)}}
+            @options={{this.selectOptions}}
+          />
+        </dd>
+        <dt>have a new friend in</dt>
+        <dd>
+          <Form::Select
+            @value={{this.newFriendObject}}
+            @onChange={{action (mut this.newFriendObject)}}
+            @options={{this.selectOptions}}
+          />
+        </dd>
+      </dl><br>
+      <button class="button" type="submit">Make them friends</button>
+    </form>
+  {{else}}
+    Start by adding a person...
+  {{/if}}
 </Jumbo>

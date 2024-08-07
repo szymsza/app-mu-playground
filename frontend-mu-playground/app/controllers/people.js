@@ -7,6 +7,9 @@ export default class PeopleController extends Controller {
   @tracked newName = '';
   @tracked newAge = '';
 
+  @tracked newFriendSubject = '';
+  @tracked newFriendObject = '';
+
   @service store;
 
   @action
@@ -27,5 +30,20 @@ export default class PeopleController extends Controller {
   removePerson(person, event) {
     event.preventDefault();
     person.destroyRecord();
+  }
+
+  @action
+  createFriendship(event) {
+    event.preventDefault();
+
+    // TODO
+    console.log("Making ", this.newFriendSubject, " friends with ", this.newFriendObject);
+  }
+
+  get selectOptions() {
+    return this.get('model').map((person) => ({
+      value: person.id,
+      label: person.name,
+    }));
   }
 }
