@@ -1,7 +1,7 @@
 {{page-title "Book"}}
 
 <Jumbo @title="Books">
-  <ul>
+  <ul class="people-list">
     {{#if @model.length }}
       {{#each @model as |book|}}
         <li>
@@ -29,7 +29,6 @@
                placeholder="978-0374533557" />
       </dd>
     </dl><br>
-    <button class="button" type="submit">Create</button><br><br>
+    <button class="button button-smaller" type="submit">Create</button><br><br>
   </form>
-  <LinkTo @route="index" class="button">Home</LinkTo>
 </Jumbo>

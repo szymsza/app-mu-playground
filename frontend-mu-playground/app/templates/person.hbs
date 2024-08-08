@@ -3,9 +3,9 @@
 <Jumbo @title={{@model.name}}>
   <ul>
     <li>Age: {{@model.age}}</li>
-    <button type="button" {{on "click" (fn this.removePerson @model)}}>Remove</button>
   </ul>
-  <br>
+  <button class="button button-smaller button-red" type="button" {{on "click" (fn this.removePerson @model)}}>Remove</button>
+  <br><br>
   <h3>My friends are</h3>
   <PeopleList @people={{@model.friends}} @onRemove={{fn this.removeFriend @model}} />
   <br>
