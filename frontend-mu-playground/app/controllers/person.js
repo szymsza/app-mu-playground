@@ -1,9 +1,12 @@
 import Controller from '@ember/controller';
 import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
+import { tracked } from '@glimmer/tracking';
 
 export default class PersonController extends Controller {
   @service router;
+
+  @tracked edit = false;
 
   @action
   async removePerson(person, event) {
@@ -23,5 +26,16 @@ export default class PersonController extends Controller {
   @action
   async removeFriendOf(object, subject, event) {
     return this.removeFriend(subject, object, event);
+  }
+
+  @action
+  toggleEdit() {
+    this.edit = !this.edit;
+  }
+
+  @action
+  saveEdit(person) {
+    person.save();
+    this.edit = !this.edit;
   }
 }

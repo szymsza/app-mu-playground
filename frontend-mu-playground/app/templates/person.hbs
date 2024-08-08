@@ -1,10 +1,23 @@
 {{page-title "Personal detail of " @model.name}}
 
 <Jumbo @title={{@model.name}}>
-  <ul>
-    <li>Age: {{@model.age}}</li>
+  <ul class="custom-list">
+    <li>
+      Age:
+      {{#if this.edit }}
+        <Input @type="number" @value={{@model.age}} />
+      {{else}}
+        {{@model.age}}
+      {{/if}}
+    </li>
   </ul>
+  {{#if this.edit }}
+    <button class="button button-smaller" type="button" {{on "click" (fn this.saveEdit @model)}}>Save</button>
+  {{else}}
+    <button class="button button-smaller" type="button" {{on "click" this.toggleEdit}}>Edit</button>
+  {{/if}}
   <button class="button button-smaller button-red" type="button" {{on "click" (fn this.removePerson @model)}}>Remove</button>
+
   <br><br>
   <h3>My friends are</h3>
   <PeopleList @people={{@model.friends}} @onRemove={{fn this.removeFriend @model}} />
