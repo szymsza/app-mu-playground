@@ -26,6 +26,10 @@ services:
     image: madnificent/books-service:2.0.0
     links:
       - database:database
+  friends:
+    image: semtech/mu-javascript-template
+    links:
+      - database:database
   resource:
     image: semtech/mu-cl-resources:1.23.0
     links:

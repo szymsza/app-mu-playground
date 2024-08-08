@@ -9,3 +9,8 @@ services:
   database:
     ports:
       - "8890:8890"
+  friends:
+    environment:
+      NODE_ENV: "development"
+    ports:
+      - 9229:9229
