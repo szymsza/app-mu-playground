@@ -5,6 +5,6 @@ export default class PersonRoute extends Route {
   @service store;
 
   async model(params) {
-    return this.store.findRecord('person', params.person_id);
+    return this.store.findRecord('person', params.id);
   }
 }
