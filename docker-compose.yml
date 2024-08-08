@@ -27,7 +27,7 @@ services:
     links:
       - database:database
   friends:
-    image: semtech/mu-javascript-template
+    image: semtech/mu-javascript-template:1.8.0
     links:
       - database:database
   resource:
