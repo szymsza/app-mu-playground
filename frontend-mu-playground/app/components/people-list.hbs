@@ -5,7 +5,9 @@
         <LinkTo @route="person" @model={{person}}>
           {{person.name}}
         </LinkTo>
-        <small>{{person.age}} years old</small>
+        {{#if person.age}}
+          <small>{{person.age}} years old</small>
+        {{/if}}
         <button type="button" {{on "click" (fn @onRemove person)}}>X</button>
       </li>
     {{/each}}

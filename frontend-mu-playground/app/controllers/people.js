@@ -52,7 +52,7 @@ export default class PeopleController extends Controller {
   }
 
   get selectOptions() {
-    return this.get('model').people.map((person) => ({
+    return this.get('model').map((person) => ({
       value: person.id,
       label: person.name,
     }));

@@ -1,11 +1,9 @@
 {{page-title "People"}}
 
 <Jumbo @title="People">
-  <PeopleList @people={{@model.people}} @onRemove={{this.removePerson}} />
+  <PeopleList @people={{@model}} @onRemove={{this.removePerson}} />
   <br>
-  <h3>Statistics</h3>
-  <FriendStatistics @data={{@model.statistics.friends}} @title="Person with most friends" />
-  <FriendStatistics @data={{@model.statistics.friendof}} @title="Friend of most people" />
+  <FriendStatistics />
 </Jumbo>
 <Jumbo @hideHamster="true" @title="Add a person">
   <form {{on "submit" this.createPerson}} >
@@ -28,7 +26,7 @@
   </form>
 </Jumbo>
 <Jumbo @hideHamster="true" @title="Making friends">
-  {{#if @model.people.length }}
+  {{#if @model.length }}
     <form {{on "submit" this.createFriendship}} >
       <dl>
         <dt>Let person</dt>

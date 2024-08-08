@@ -1,9 +1,20 @@
+<h3>Statistics</h3>
 <div>
-  <h4>{{ @title }}</h4>
+  <h4>Person with most friends</h4>
   &nbsp;&nbsp;&nbsp;
-  {{#if @data}}
-    <b>{{ @data.person.name }}</b>
-    ({{ @data.friends }})
+  {{#if this.statistics.friends}}
+    <b>{{ this.statistics.friends.person.name }}</b>
+    ({{ this.statistics.friends.friends }})
+  {{else}}
+    No one found :(
+  {{/if}}
+</div>
+<div>
+  <h4>Friend of most people</h4>
+  &nbsp;&nbsp;&nbsp;
+  {{#if this.statistics.friendof}}
+    <b>{{ this.statistics.friendof.person.name }}</b>
+    ({{ this.statistics.friendof.friends }})
   {{else}}
     No one found :(
   {{/if}}
