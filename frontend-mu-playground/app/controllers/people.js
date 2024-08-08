@@ -39,6 +39,12 @@ export default class PeopleController extends Controller {
     const subject = await this.store.findRecord('person', this.newFriendSubject);
     const object = await this.store.findRecord('person', this.newFriendObject);
     const friends = await subject.friends;
+
+    // This friendship already exists
+    if (friends.find((friend) => friend.id === object.id)) {
+      return;
+    }
+
     friends.push(object);
     subject.save();
   }
