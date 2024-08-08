@@ -1,12 +1,15 @@
 import Controller from '@ember/controller';
 import { action } from '@ember/object';
-import { inject as service } from '@ember/service';
+import { service } from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 
 export default class PersonController extends Controller {
   @service router;
+  @service store;
 
   @tracked edit = false;
+  @tracked stealToId = '';
+  @tracked selectOptions = [];
 
   @action
   async removePerson(person, event) {
@@ -37,5 +40,31 @@ export default class PersonController extends Controller {
   saveEdit(person) {
     person.save();
     this.edit = !this.edit;
+  }
+
+  constructor() {
+    super(...arguments);
+
+    this.store.findAll('person').then((x) => {
+      this.selectOptions = x.map((person) => ({
+        value: person.id,
+        label: person.name,
+      }));
+    });
+  }
+
+  @action
+  async steal(from, event) {
+    event.preventDefault();
+
+    const stealRequest = await fetch(`/friends/steal/${from.id}/${this.stealToId}`);
+    const stealResult = await stealRequest.json();
+
+    if (stealResult['callret-0']?.value) {
+      alert(`${parseInt(stealResult['callret-0']?.value.split('insert')[1])} friends stolen!`);
+    }
+
+    this.store.unloadAll('person');
+    this.router.refresh();
   }
 }

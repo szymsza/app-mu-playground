@@ -1,4 +1,4 @@
-import { app, query, sparqlEscapeUri } from 'mu';
+import { app, query, sparqlEscapeString } from 'mu';
 
 // Get some simple statistics
 app.get('/statistics', async function (req, res) {
@@ -38,6 +38,7 @@ app.get('/steal/:from/:to', async function(req, res) {
 
   const queryString = `
     prefix foaf: <http://xmlns.com/foaf/0.1/>
+    prefix core: <http://mu.semte.ch/vocabularies/core/>
   
     DELETE {
       ?personFrom foaf:knows ?friend
@@ -47,10 +48,10 @@ app.get('/steal/:from/:to', async function(req, res) {
     }
     USING <http://mu.semte.ch/application>
     WHERE {
-      VALUES ?personFrom {${sparqlEscapeUri(from)}}
-      VALUES ?personTo {${sparqlEscapeUri(to)}}
-    
-      ?personFrom foaf:knows ?friend
+      ?personFrom foaf:knows ?friend;
+                  core:uuid ${sparqlEscapeString(from)}.
+                  
+      ?personTo core:uuid ${sparqlEscapeString(to)}. 
     }
   `;
 

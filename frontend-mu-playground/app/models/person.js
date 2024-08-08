@@ -15,7 +15,6 @@ export default class BookModel extends Model {
     async: true,
   }) friendof;
 
-  @computed('name')
   get slug() {
     // Source: https://dev.to/bybydev/how-to-slugify-a-string-in-javascript-4o9n
     return this.name.replace(/^\s+|\s+$/g, '')

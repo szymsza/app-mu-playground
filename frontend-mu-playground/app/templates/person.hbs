@@ -22,6 +22,15 @@
   <h3>My friends are</h3>
   <PeopleList @people={{@model.friends}} @onRemove={{fn this.removeFriend @model}} />
   <br>
+  <h4>Select the thief to steal the friends</h4>
+  <Form::Select
+    @value={{this.stealToId}}
+    @onChange={{action (mut this.stealToId)}}
+    @options={{this.selectOptions}}
+  />
+  <button class="button button-smaller" type="button" {{on "click" (fn this.steal @model)}}>Steal</button><br>
+  <br>
+  <br>
   <h3>I am a friend of</h3>
   <PeopleList @people={{@model.friendof}} @onRemove={{fn this.removeFriendOf @model}} />
 </Jumbo>
