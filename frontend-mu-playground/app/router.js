@@ -14,5 +14,6 @@ Router.map(function () {
   this.route('rental', { path: '/rental/:id' });
 
   this.route('people');
+  this.route('person', { path: '/person/:id' });
   this.route('person', { path: '/person/:slug/:id' });
 });
