@@ -1,0 +1,15 @@
+{{#if @people.length }}
+  <ul>
+    {{#each @people as |person|}}
+      <li>
+        <LinkTo @route="person" @model={{person}}>
+          {{person.name}}
+        </LinkTo>
+        <small>{{person.age}} years old</small>
+        <button type="button" {{on "click" (fn @onRemove person)}}>Remove</button>
+      </li>
+    {{/each}}
+  </ul>
+{{else}}
+  Nothing to see here so far...<br>
+{{/if}}

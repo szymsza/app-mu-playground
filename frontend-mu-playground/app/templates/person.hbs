@@ -6,25 +6,9 @@
     <button type="button" {{on "click" (fn this.removePerson @model)}}>Remove</button>
   </ul>
   <br>
-  {{#if @model.friends.length }}
-    <h3>My friends are</h3>
-    <ul>
-      {{#each @model.friends as |friend|}}
-        <li>{{friend.name}}</li>
-      {{/each}}
-    </ul>
-  {{else}}
-    <h3>I do not have any friends :(</h3>
-  {{/if}}
+  <h3>My friends are</h3>
+  <PeopleList @people={{@model.friends}} @onRemove={{fn this.removeFriend @model}} />
   <br>
-  {{#if @model.friendof.length }}
-    <h3>I am a friend of</h3>
-    <ul>
-      {{#each @model.friendof as |friend|}}
-        <li>{{friend.name}}</li>
-      {{/each}}
-    </ul>
-  {{else}}
-    <h3>I am not a friend of anyone :(</h3>
-  {{/if}}
+  <h3>I am a friend of</h3>
+  <PeopleList @people={{@model.friendof}} @onRemove={{fn this.removeFriendOf @model}} />
 </Jumbo>

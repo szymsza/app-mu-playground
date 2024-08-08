@@ -7,8 +7,8 @@ export default class PeopleController extends Controller {
   @tracked newName = '';
   @tracked newAge = '';
 
-  @tracked newFriendSubject = '';
-  @tracked newFriendObject = '';
+  @tracked newFriendSubjectId = '';
+  @tracked newFriendObjectId = '';
 
   @service store;
 
@@ -36,17 +36,19 @@ export default class PeopleController extends Controller {
   async createFriendship(event) {
     event.preventDefault();
 
-    const subject = await this.store.findRecord('person', this.newFriendSubject);
-    const object = await this.store.findRecord('person', this.newFriendObject);
+    const subject = await this.store.findRecord('person', this.newFriendSubjectId);
+    const object = await this.store.findRecord('person', this.newFriendObjectId);
     const friends = await subject.friends;
 
     // This friendship already exists
     if (friends.find((friend) => friend.id === object.id)) {
+      alert('Relatinship already exists!');
       return;
     }
 
     friends.push(object);
     subject.save();
+    alert('Relatinship successfully added!');
   }
 
   get selectOptions() {

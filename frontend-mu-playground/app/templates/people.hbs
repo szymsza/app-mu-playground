@@ -1,23 +1,9 @@
 {{page-title "People"}}
 
 <Jumbo @title="People">
-  <ul>
-    {{#if @model.length }}
-      {{#each @model as |person|}}
-        <li>
-          <LinkTo @route="person" @model={{person}}>
-            {{person.name}}
-          </LinkTo>
-          <small>{{person.age}} years old</small>
-          <button type="button" {{on "click" (fn this.removePerson person)}}>Remove</button>
-        </li>
-      {{/each}}
-    {{else}}
-      Start by adding a person...
-    {{/if}}
-  </ul>
+  <PeopleList @people={{@model}} @onRemove={{this.removePerson}} />
 </Jumbo>
-<Jumbo @hideHamster="true">
+<Jumbo @hideHamster="true" @title="Add a person">
   <form {{on "submit" this.createPerson}} >
     <dl>
       <dt>Name</dt>
@@ -44,16 +30,16 @@
         <dt>Let person</dt>
         <dd>
           <Form::Select
-            @value={{this.newFriendSubject}}
-            @onChange={{action (mut this.newFriendSubject)}}
+            @value={{this.newFriendSubjectId}}
+            @onChange={{action (mut this.newFriendSubjectId)}}
             @options={{this.selectOptions}}
           />
         </dd>
         <dt>have a new friend in</dt>
         <dd>
           <Form::Select
-            @value={{this.newFriendObject}}
-            @onChange={{action (mut this.newFriendObject)}}
+            @value={{this.newFriendObjectId}}
+            @onChange={{action (mut this.newFriendObjectId)}}
             @options={{this.selectOptions}}
           />
         </dd>
