@@ -1,0 +1,10 @@
+<div>
+  <h4>{{ @title }}</h4>
+  &nbsp;&nbsp;&nbsp;
+  {{#if @data}}
+    <b>{{ @data.person.name }}</b>
+    ({{ @data.friends }})
+  {{else}}
+    No one found :(
+  {{/if}}
+</div>

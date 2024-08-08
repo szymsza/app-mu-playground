@@ -5,8 +5,9 @@ app.get('/statistics', async function (req, res) {
   const getMostFriends = async (inverse = false) => {
     const queryString = `
       prefix foaf: <http://xmlns.com/foaf/0.1/>
+      prefix core: <http://mu.semte.ch/vocabularies/core/>
     
-      SELECT DISTINCT ?person (COUNT(?friend) as ?friendCount) 
+      SELECT DISTINCT ?personId (COUNT(?friend) as ?friendCount) 
       WHERE {
         ${
           inverse ? `
@@ -17,8 +18,10 @@ app.get('/statistics', async function (req, res) {
               foaf:knows ?friend.
           `
         }
+        
+        ?person core:uuid ?personId. 
       }
-      GROUP BY ?person
+      GROUP BY ?personId
       ORDER BY DESC(?friendCount)
       LIMIT 1
     `;
@@ -26,14 +29,14 @@ app.get('/statistics', async function (req, res) {
     return (await query(queryString)).results.bindings[0] ?? null;
   };
 
-  res.send({
+  res.send(200, {
     friends: await getMostFriends(),
     friendof: await getMostFriends(true),
   });
 });
 
 // Move all friends of one person to another one
-app.get('/steal/:from/:to', async function(req, res) {
+app.post('/steal/:from/:to', async function(req, res) {
   const { from, to } = req.params;
 
   const queryString = `
@@ -55,5 +58,5 @@ app.get('/steal/:from/:to', async function(req, res) {
     }
   `;
 
-  res.send((await query(queryString)).results.bindings[0] ?? null);
+  res.send(201, (await query(queryString)).results.bindings[0] ?? null);
 });

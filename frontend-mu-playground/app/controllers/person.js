@@ -57,7 +57,9 @@ export default class PersonController extends Controller {
   async steal(from, event) {
     event.preventDefault();
 
-    const stealRequest = await fetch(`/friends/steal/${from.id}/${this.stealToId}`);
+    const stealRequest = await fetch(`/friends/steal/${from.id}/${this.stealToId}`, {
+      method: 'POST',
+    });
     const stealResult = await stealRequest.json();
 
     if (stealResult['callret-0']?.value) {
