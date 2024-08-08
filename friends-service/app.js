@@ -22,7 +22,7 @@ app.get('/statistics', async function (req, res) {
     `;
 
     let x = await query(queryString);
-    return x.results.bindings[0];
+    return x.results.bindings[0] ?? null;
   };
 
   res.send({
