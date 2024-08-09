@@ -1,0 +1,17 @@
+<Jumbo @hideHamster="true" @title="Login">
+  <form {{on "submit" this.login}} >
+    <dl>
+      <dt>Nickname</dt>
+      <dd>
+        <Input @value={{this.nickname}}/>
+      </dd>
+      <dt>Password</dt>
+      <dd>
+        <Input @value={{this.password}}
+               @type="password"/>
+      </dd>
+    </dl>
+    <br>
+    <button class="button button-smaller" type="submit">Login</button>
+  </form>
+</Jumbo>
