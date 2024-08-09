@@ -20,31 +20,33 @@ defmodule Dispatcher do
     |> send_resp( 200, "{ \"message\": \"ok\" }" )
   end
 
-  # In order to forward the 'themes' resource to the
-  # resource service, use the following forward rule:
-  #
-  # match "/themes/*path", @json do
-  #   Proxy.forward conn, path, "http://resource/themes/"
-  # end
-  #
-  # Run `docker-compose restart dispatcher` after updating
-  # this file.
-
-  match "/books/*path" do
+  match "/books/*path", %{ layer: :services } do
     Proxy.forward conn, path, "http://books/books/"
   end
 
-  match "/authors/*path" do
+  match "/authors/*path", %{ layer: :services } do
     Proxy.forward conn, path, "http://books/authors/"
   end
 
-  match "/people/*path" do
+  match "/people/*path", %{ layer: :services } do
     Proxy.forward conn, path, "http://resource/people/"
   end
 
-  match "/friends/*path" do
-      Proxy.forward conn, path, "http://friends/"
-    end
+  match "/friends/*path", %{ layer: :services } do
+    Proxy.forward conn, path, "http://friends/"
+  end
+
+  get "/files/:id/download", %{ layer: :services } do
+    Proxy.forward conn, [], "http://file/files/" <> id <> "/download"
+  end
+
+  post "/files/*path", %{ layer: :services } do
+    Proxy.forward conn, path, "http://file/files/"
+  end
+
+  delete "/files/*path", %{ accept: [ :json ], layer: :services } do
+    Proxy.forward conn, path, "http://file/files/"
+  end
 
   match "/*_", %{ layer: :not_found } do
     send_resp( conn, 404, "Route not found.  See config/dispatcher.ex" )
