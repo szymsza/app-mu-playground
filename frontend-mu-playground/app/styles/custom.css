@@ -37,3 +37,28 @@ input, select {
   border: 1px solid #ccc;
   background-color: white;
 }
+
+.jumbo .person-avatar {
+  height: 2rem;
+  background-color: white;
+  border: 1px solid #ccc;
+  aspect-ratio: 1;
+  position: relative;
+  right: 0;
+  top: auto;
+  bottom: -0.75rem;
+  margin-bottom: 1rem;
+  object-fit: cover;
+  border-radius: 10%;
+
+  &:hover {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    height: 80vh;
+    width: auto;
+    aspect-ratio: auto;
+    z-index: 1;
+  }
+}

@@ -37,9 +37,27 @@ export default class PersonController extends Controller {
   }
 
   @action
-  saveEdit(person) {
+  async saveEdit(person, event) {
+    event.preventDefault();
+    await this.uploadImage(person, event.target);
+
     person.save();
     this.edit = !this.edit;
+  }
+
+  async uploadImage(person, form) {
+    const formData = new FormData(form);
+    if (formData.get('file').size === 0) {
+      return;
+    }
+
+    const response = await (await fetch('/files', {
+      method: 'POST',
+      body: formData,
+    })).json();
+
+    // TODO - set the image to the person
+    console.log(response);
   }
 
   constructor() {

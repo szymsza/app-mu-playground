@@ -1,22 +1,36 @@
 {{page-title "Personal detail of " @model.name}}
 
 <Jumbo @title={{@model.name}}>
-  <ul class="custom-list">
-    <li>
-      Age:
-      {{#if this.edit }}
-        <Input @type="number" @value={{@model.age}} />
-      {{else}}
-        {{@model.age}}
-      {{/if}}
-    </li>
-  </ul>
-  {{#if this.edit }}
-    <button class="button button-smaller" type="button" {{on "click" (fn this.saveEdit @model)}}>Save</button>
-  {{else}}
-    <button class="button button-smaller" type="button" {{on "click" this.toggleEdit}}>Edit</button>
-  {{/if}}
-  <button class="button button-smaller button-red" type="button" {{on "click" (fn this.removePerson @model)}}>Remove</button>
+  <form enctype="multipart/form-data" {{on "submit" (fn this.saveEdit @model)}}>
+    <ul class="custom-list">
+      <li>
+        Age:
+        {{#if this.edit }}
+          <Input @type="number" @value={{@model.age}} />
+        {{else}}
+          {{@model.age}}
+        {{/if}}
+      </li>
+      <li>
+        Avatar:
+        {{#if this.edit }}
+          <input
+            accept="image/png,image/jpeg,image/gif"
+            type="file"
+            name="file"
+          />
+        {{else}}
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuoiVnnWu_QbtFist_W7Hbz2V4drhwXDVyiw&s" alt="Avatar of {{@model.name}}" class="person-avatar" />
+        {{/if}}
+      </li>
+    </ul>
+    {{#if this.edit }}
+      <button class="button button-smaller" type="submit">Save</button>
+    {{else}}
+      <button class="button button-smaller" type="button" {{on "click" this.toggleEdit}}>Edit</button>
+    {{/if}}
+    <button class="button button-smaller button-red" type="button" {{on "click" (fn this.removePerson @model)}}>Remove</button>
+  </form>
 
   <br><br>
   <h3>My friends are</h3>
