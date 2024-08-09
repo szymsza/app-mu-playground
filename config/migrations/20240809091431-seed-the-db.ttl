@@ -1,0 +1,45 @@
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix core: <http://mu.semte.ch/vocabularies/core/> .
+@prefix local: <http://localhost:4200/person/> .
+
+local:78655B61A44E637C62E2C482
+    a foaf:Person ;
+    foaf:name "Collin Mahoney" ;
+    foaf:age 35 ;
+    core:uuid "78655B61A44E637C62E2C482" ;
+    foaf:knows local:3545DE22A5AF8628379F246C .
+
+local:3545DE22A5AF8628379F246C
+    a foaf:Person ;
+    foaf:name "Scot Simmons" ;
+    foaf:age 81 ;
+    core:uuid "3545DE22A5AF8628379F246C" ;
+    foaf:knows
+        local:3545DE22A5AF8628379F246C,
+        local:78655B61A44E637C62E2C482,
+        local:543CE00FC8C9A92DC418E6CD,
+        local:ED32F77A8CA4914C4469492A,
+        local:677C0005EE5A36F29458306C .
+
+local:543CE00FC8C9A92DC418E6CD
+    a foaf:Person ;
+    foaf:name "Elvia Barron" ;
+    foaf:age 49 ;
+    core:uuid "543CE00FC8C9A92DC418E6CD" ;
+    foaf:knows local:78655B61A44E637C62E2C482 .
+
+local:ED32F77A8CA4914C4469492A
+    a foaf:Person ;
+    foaf:name "Sonja Bailey" ;
+    foaf:age 27 ;
+    core:uuid "ED32F77A8CA4914C4469492A" ;
+    foaf:knows
+        local:78655B61A44E637C62E2C482,
+        local:ED32F77A8CA4914C4469492A .
+
+local:677C0005EE5A36F29458306C
+    a foaf:Person ;
+    foaf:name "Alexandria Osborne" ;
+    foaf:age 32 ;
+    core:uuid "677C0005EE5A36F29458306C" ;
+    foaf:knows local:78655B61A44E637C62E2C482 .

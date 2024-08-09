@@ -14,3 +14,9 @@ services:
       NODE_ENV: "development"
     ports:
       - 9229:9229
+  migrations:
+    image: semtech/mu-migrations-service:0.9.0
+    links:
+      - database:database
+    volumes:
+      - ./config/migrations:/data/migrations
