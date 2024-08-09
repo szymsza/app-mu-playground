@@ -1,0 +1,22 @@
+<Jumbo @hideHamster="true" @title="Create an account">
+  <form {{on "submit" this.register}} >
+    <dl>
+      <dt>Nickname</dt>
+      <dd>
+        <Input @value={{this.nickname}}/>
+      </dd>
+      <dt>Password</dt>
+      <dd>
+        <Input @value={{this.password}}
+               @type="password"/>
+      </dd>
+      <dt>Confirm password</dt>
+      <dd>
+        <Input @value={{this.passwordConfirmation}}
+               @type="password"/>
+      </dd>
+    </dl>
+    <br>
+    <button class="button button-smaller" type="submit">Add person</button>
+  </form>
+</Jumbo>

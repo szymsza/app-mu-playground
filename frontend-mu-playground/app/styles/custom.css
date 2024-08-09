@@ -24,7 +24,7 @@
       border: none;
       cursor: pointer;
       color: red;
-      background: rgba(255, 0, 0, 0.1) none;
+      background: rgb(255 0 0 / 10%) none;
       line-height: 1;
       padding: 0.2rem 0.3rem;
     }
