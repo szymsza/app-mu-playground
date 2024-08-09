@@ -2,7 +2,6 @@ import Component from '@glimmer/component';
 import { action } from '@ember/object';
 
 export default class CustomInputComponent extends Component {
-
   @action
   updateValue(event) {
     this.args.onChange(event.target.value);

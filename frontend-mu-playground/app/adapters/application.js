@@ -23,7 +23,7 @@ export default class ApplicationAdapter extends JSONApi {
     ApplicationAdapter.updateObservers.forEach((fn) => fn());
   }
 
-  static updateObservers = []
+  static updateObservers = [];
 
   static registerUpdateObserver(onUpdate) {
     this.updateObservers.push(onUpdate);

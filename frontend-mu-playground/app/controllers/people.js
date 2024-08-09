@@ -36,8 +36,14 @@ export default class PeopleController extends Controller {
   async createFriendship(event) {
     event.preventDefault();
 
-    const subject = await this.store.findRecord('person', this.newFriendSubjectId);
-    const object = await this.store.findRecord('person', this.newFriendObjectId);
+    const subject = await this.store.findRecord(
+      'person',
+      this.newFriendSubjectId,
+    );
+    const object = await this.store.findRecord(
+      'person',
+      this.newFriendObjectId,
+    );
     const friends = await subject.friends;
 
     // This friendship already exists
@@ -52,7 +58,7 @@ export default class PeopleController extends Controller {
   }
 
   get selectOptions() {
-    return this.get('model').map((person) => ({
+    return this.model.map((person) => ({
       value: person.id,
       label: person.name,
     }));

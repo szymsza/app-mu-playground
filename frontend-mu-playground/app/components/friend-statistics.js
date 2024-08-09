@@ -21,14 +21,16 @@ export default class FriendStatisticsComponent extends Component {
       const response = await (await fetch('/friends/statistics')).json();
 
       this.statistics = Object.fromEntries(
-        await Promise.all(Object.entries(response).map((el) => this.mapFriendStatistics(el))),
+        await Promise.all(
+          Object.entries(response).map((el) => this.mapFriendStatistics(el)),
+        ),
       );
     }, 300);
   }
 
-  async mapFriendStatistics([ index, value ]) {
+  async mapFriendStatistics([index, value]) {
     if (!value) {
-      return [ index, null ];
+      return [index, null];
     }
 
     const { friendCount, personId } = value;
@@ -40,5 +42,5 @@ export default class FriendStatisticsComponent extends Component {
         person: await this.store.findRecord('person', personId.value),
       },
     ];
-  };
+  }
 }

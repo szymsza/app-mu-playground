@@ -51,13 +51,14 @@ export default class PersonController extends Controller {
       return;
     }
 
-    const response = await (await fetch('/files', {
-      method: 'POST',
-      body: formData,
-    })).json();
+    const response = await (
+      await fetch('/files', {
+        method: 'POST',
+        body: formData,
+      })
+    ).json();
 
-    // TODO - set the image to the person
-    console.log(response);
+    person.avatar = response.links.self;
   }
 
   constructor() {
@@ -75,13 +76,18 @@ export default class PersonController extends Controller {
   async steal(from, event) {
     event.preventDefault();
 
-    const stealRequest = await fetch(`/friends/steal/${from.id}/${this.stealToId}`, {
-      method: 'POST',
-    });
+    const stealRequest = await fetch(
+      `/friends/steal/${from.id}/${this.stealToId}`,
+      {
+        method: 'POST',
+      },
+    );
     const stealResult = await stealRequest.json();
 
     if (stealResult['callret-0']?.value) {
-      alert(`${parseInt(stealResult['callret-0']?.value.split('insert')[1])} friends stolen!`);
+      alert(
+        `${parseInt(stealResult['callret-0']?.value.split('insert')[1])} friends stolen!`,
+      );
     }
 
     this.store.unloadAll('person');

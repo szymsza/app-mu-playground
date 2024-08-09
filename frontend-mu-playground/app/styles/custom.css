@@ -24,14 +24,15 @@
       border: none;
       cursor: pointer;
       color: red;
-      background: rgba(255,0,0,0.1) none;
+      background: rgba(255, 0, 0, 0.1) none;
       line-height: 1;
-      padding: 0.2rem 0.3rem
+      padding: 0.2rem 0.3rem;
     }
   }
 }
 
-input, select {
+input,
+select {
   padding: 0.5rem;
   border-radius: 0.5rem;
   border: 1px solid #ccc;
