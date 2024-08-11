@@ -1,5 +1,8 @@
 {{page-title "Registration"}}
 
-<Auth::Login />
-<Auth::Logout />
-<Auth::Register />
+{{#if this.session.isAuthenticated}}
+  <Auth::Logout />
+{{else}}
+  <Auth::Login />
+  <Auth::Register />
+{{/if}}
