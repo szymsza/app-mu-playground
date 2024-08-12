@@ -1,6 +1,10 @@
 <Jumbo @hideHamster="true" @title="Create an account">
   <form {{on "submit" this.register}} >
     <dl>
+      <dt>Full name</dt>
+      <dd>
+        <Input @value={{this.name}}/>
+      </dd>
       <dt>Nickname</dt>
       <dd>
         <Input @value={{this.nickname}}/>

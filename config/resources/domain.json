@@ -32,9 +32,33 @@
           "target": "person",
           "cardinality": "many",
           "inverse": true
+        },
+        "account": {
+          "predicate": "foaf:account",
+          "target": "account",
+          "cardinality": "one"
         }
       },
       "new-resource-base": "http://localhost:4200/person/"
+    },
+    "accounts": {
+      "name": "account",
+      "class": "foaf:OnlineAccount",
+      "attributes": {
+        "name": {
+          "type": "string",
+          "predicate": "foaf:accountName"
+        }
+      },
+      "relationships": {
+        "owner": {
+          "predicate": "foaf:account",
+          "target": "person",
+          "cardinality": "one",
+          "inverse": true
+        }
+      },
+      "new-resource-base": "http://mu.semte.ch/services/registration-service/accounts/"
     }
   }
 }

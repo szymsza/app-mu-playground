@@ -3,6 +3,7 @@ import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 
 export default class RegisterComponent extends Component {
+  @tracked name = '';
   @tracked nickname = '';
   @tracked password = '';
   @tracked passwordConfirmation = '';
@@ -18,7 +19,7 @@ export default class RegisterComponent extends Component {
           data: {
             type: 'accounts',
             attributes: {
-              name: this.nickname,
+              name: this.name,
               nickname: this.nickname,
               password: this.password,
               'password-confirmation': this.passwordConfirmation,
@@ -38,7 +39,7 @@ export default class RegisterComponent extends Component {
       return;
     }
 
-    this.nickname = this.password = this.passwordConfirmation = '';
+    this.name = this.nickname = this.password = this.passwordConfirmation = '';
     alert('Registration successful');
   }
 }

@@ -1,4 +1,4 @@
-import Model, { attr, hasMany } from '@ember-data/model';
+import Model, { attr, hasMany, belongsTo } from '@ember-data/model';
 
 export default class PersonModel extends Model {
   @attr('string') name;
@@ -17,6 +17,11 @@ export default class PersonModel extends Model {
     inverse: 'friends',
     async: true,
   }) friendof;
+
+  @belongsTo('account', {
+    inverse: 'owner',
+    async: true,
+  }) account;
 
   get slug() {
     // Source: https://dev.to/bybydev/how-to-slugify-a-string-in-javascript-4o9n

@@ -12,6 +12,15 @@
         {{/if}}
       </li>
       <li>
+        Account:
+        {{#if this.edit }}
+          TODO
+        {{else}}
+          {{if @model.account @model.account.name "-"}}
+
+        {{/if}}
+      </li>
+      <li>
         Avatar:
         {{#if this.edit }}
           <input
