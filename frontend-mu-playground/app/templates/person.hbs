@@ -3,6 +3,12 @@
 <Jumbo @title={{@model.name}}>
   <form enctype="multipart/form-data" {{on "submit" (fn this.saveEdit @model)}}>
     <ul class="custom-list">
+      {{#if this.edit }}
+        <li>
+          Name:
+            <Input @value={{@model.name}} />
+        </li>
+      {{/if}}
       <li>
         Age:
         {{#if this.edit }}

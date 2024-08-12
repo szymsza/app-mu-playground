@@ -1,4 +1,5 @@
 import { app, query, sparqlEscapeString } from 'mu';
+import express from 'express';
 
 // Get some simple statistics
 app.get('/statistics', async function (req, res) {
@@ -58,4 +59,25 @@ app.post('/steal/:from/:to', async function(req, res) {
   `;
 
   res.send(201, (await query(queryString)).results.bindings[0] ?? null);
+});
+
+app.use(express.json());
+
+// Notification from Delta
+app.post('/notify', function(req, res) {
+  console.log('Delta notification');
+  console.log('---');
+  Object.entries(req.body).forEach(([index, {inserts, deletes}]) => {
+    console.log(`Change ${index}`);
+    console.log('  Inserts:');
+    inserts.forEach((insert) => {
+      console.log('     ', insert);
+    });
+    console.log('  Deletes:');
+    deletes.forEach((del) => {
+      console.log('     ', del);
+    });
+  });
+
+  res.send(200);
 });

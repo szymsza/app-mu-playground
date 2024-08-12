@@ -54,3 +54,7 @@ services:
     image: semtech/mu-registration-service:2.7.3
     links:
       - database:database
+  deltanotifier:
+    image: semtech/mu-delta-notifier:0.4.0
+    volumes:
+      - ./config/delta:/config

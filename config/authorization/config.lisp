@@ -1,9 +1,9 @@
 ;;;;;;;;;;;;;;;;;;;
 ;;; delta messenger
-;(in-package :delta-messenger)
+(in-package :delta-messenger)
 
-;(add-delta-logger)
-;(add-delta-messenger "http://delta-notifier/")
+(add-delta-logger)
+(add-delta-messenger "http://deltanotifier/")
 
 ;;;;;;;;;;;;;;;;;
 ;;; configuration
