@@ -1,4 +1,5 @@
 export default [
+  // Custom notifier
   {
     match: {
       // form of element is {subject,predicate,object}
@@ -16,4 +17,20 @@ export default [
       ignoreFromSelf: true
     },
   },
+
+  // Resource cache
+  {
+    match: {
+      subject: { }
+    },
+    callback: {
+      url: "http://resource/.mu/delta",
+      method: "POST"
+    },
+    options: {
+      resourceFormat: "v0.0.1",
+      gracePeriod: 250,
+      ignoreFromSelf: true
+    }
+  }
 ];

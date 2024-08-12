@@ -124,12 +124,16 @@ export default class PersonController extends Controller {
         method: 'POST',
       },
     );
-    const stealResult = await stealRequest.json();
+    try {
+      const stealResult = await stealRequest.json();
 
-    if (stealResult['callret-0']?.value) {
-      alert(
-        `${parseInt(stealResult['callret-0']?.value.split('insert')[1])} friends stolen!`,
-      );
+      if (stealResult['callret-0']?.value) {
+        alert(
+          `${parseInt(stealResult['callret-0']?.value.split('insert')[1])} friends stolen!`,
+        );
+      }
+    } catch (e) {
+      alert('Friends stolen!');
     }
 
     this.store.unloadAll('person');

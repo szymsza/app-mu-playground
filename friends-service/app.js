@@ -1,4 +1,4 @@
-import { app, query, sparqlEscapeString } from 'mu';
+import { app, query, update, sparqlEscapeString } from 'mu';
 import express from 'express';
 
 // Get some simple statistics
@@ -58,7 +58,7 @@ app.post('/steal/:from/:to', async function(req, res) {
     }
   `;
 
-  res.send(201, (await query(queryString)).results.bindings[0] ?? null);
+  res.send(201, (await query(queryString))?.results?.bindings[0] ?? null);
 });
 
 app.use(express.json());

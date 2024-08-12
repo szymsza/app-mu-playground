@@ -10,7 +10,7 @@ services:
   dispatcher:
     image: semtech/mu-dispatcher:2.1.0-beta.2
     links:
-      - resource:resource
+      - resourcecache:resource
       - books:books
     volumes:
       - ./config/dispatcher:/config
@@ -40,6 +40,8 @@ services:
       - database:database
     volumes:
       - ./config/resources:/config
+    environment:
+      CACHE_CLEAR_PATH: "http://resourcecache/.mu/clear-keys"
   file:
     image: semtech/mu-file-service:3.4.0
     links:
@@ -58,3 +60,7 @@ services:
     image: semtech/mu-delta-notifier:0.4.0
     volumes:
       - ./config/delta:/config
+  resourcecache:
+    image: semtech/mu-cache:2.0.2
+    links:
+      - resource:backend
