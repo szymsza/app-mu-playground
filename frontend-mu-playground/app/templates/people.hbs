@@ -1,7 +1,19 @@
 {{page-title "People"}}
 
 <Jumbo @title="People">
-  <PeopleList @people={{@model}} @onRemove={{this.removePerson}} />
+  <Search @onSearch={{this.setSearchResults}} />
+  {{#unless this.searchPerformed}}
+    <PeopleList @people={{@model}} @onRemove={{this.removePerson}} />
+  {{else}}
+    {{#if this.searchResults}}
+      <PeopleList @people={{this.searchResults}} @onRemove={{this.removePerson}} />
+    {{else}}
+      <br><br>
+      <p>
+        Nothing matches your search query...
+      </p>
+    {{/if}}
+  {{/unless}}
   <br>
   <FriendStatistics />
 </Jumbo>

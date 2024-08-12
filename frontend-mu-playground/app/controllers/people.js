@@ -10,6 +10,8 @@ export default class PeopleController extends Controller {
   @tracked newFriendSubjectId = '';
   @tracked newFriendObjectId = '';
 
+  @tracked searchResults = null;
+
   @service store;
 
   @action
@@ -30,6 +32,15 @@ export default class PeopleController extends Controller {
   removePerson(person, event) {
     event.preventDefault();
     person.destroyRecord();
+  }
+
+  @action
+  setSearchResults(results) {
+    this.searchResults = results;
+  }
+
+  get searchPerformed() {
+    return this.searchResults !== null;
   }
 
   @action
