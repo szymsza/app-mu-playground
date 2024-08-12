@@ -1,7 +1,13 @@
 {{page-title "Registration"}}
 
 {{#if this.session.isAuthenticated}}
-  <Auth::Logout />
+  <Jumbo @hideHamster="true" @title="My account">
+    My profile: <LinkTo @route="person" @model={{this.person}}>
+      {{this.person.name}}
+    </LinkTo><br>
+    <br>
+    <Auth::Logout />
+  </Jumbo>
 {{else}}
   <Auth::Login />
   <Auth::Register />
