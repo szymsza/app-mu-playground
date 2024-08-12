@@ -49,7 +49,6 @@ app.post('/steal/:from/:to', async function(req, res) {
     INSERT {
       ?personTo foaf:knows ?friend
     }
-    USING <http://mu.semte.ch/application>
     WHERE {
       ?personFrom foaf:knows ?friend;
                   core:uuid ${sparqlEscapeString(from)}.
