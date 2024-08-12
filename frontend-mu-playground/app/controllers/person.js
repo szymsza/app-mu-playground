@@ -6,6 +6,7 @@ import { tracked } from '@glimmer/tracking';
 export default class PersonController extends Controller {
   @service router;
   @service store;
+  @service session;
 
   @tracked edit = false;
   @tracked stealToId = '';
@@ -64,12 +65,25 @@ export default class PersonController extends Controller {
   constructor() {
     super(...arguments);
 
-    this.store.findAll('person').then((x) => {
-      this.selectOptions = x.map((person) => ({
-        value: person.id,
-        label: person.name,
-      }));
-    });
+    if (!this.session.isAuthenticated) {
+      this.store.findAll('person').then((x) => {
+        this.selectOptions = x.map((person) => ({
+          value: person.id,
+          label: person.name,
+        }));
+      });
+    } else {
+      this.loadAuthUser();
+    }
+  }
+
+  async loadAuthUser() {
+    const account = await this.store.findRecord(
+      'account',
+      this.session.data.authenticated.data.relationships.account.data.id,
+    );
+
+    this.stealToId = (await account.owner).id;
   }
 
   @action
