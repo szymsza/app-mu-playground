@@ -20,3 +20,10 @@ services:
       - database:database
     volumes:
       - ./config/migrations:/data/migrations
+  yasgui:
+    image: erikap/yasgui
+    ports:
+      - 8891:80
+    environment:
+      ENABLE_ENDPOINT_SELECTOR: "true"
+      DEFAULT_SPARQL_ENDPOINT: "http://localhost:8890/sparql"
