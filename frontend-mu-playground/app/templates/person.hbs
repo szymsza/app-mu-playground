@@ -38,6 +38,9 @@
     {{else}}
       <button class="button button-smaller" type="button" {{on "click" this.toggleEdit}}>Edit</button>
     {{/if}}
+    {{#if this.session.isAuthenticated }}
+      <button class="button button-smaller button-red" type="button" {{on "click" (fn this.claimPerson @model)}}>Claim this person</button>
+    {{/if}}
     <button class="button button-smaller button-red" type="button" {{on "click" (fn this.removePerson @model)}}>Remove</button>
   </form>
 
@@ -45,7 +48,7 @@
   <h3>My friends are</h3>
   <PeopleList @people={{@model.friends}} @onRemove={{fn this.removeFriend @model}} />
   <br>
-  {{#if this.session.isAuthenticated }}
+  {{#if this.authenticated }}
     <h4>Steal friends for myself</h4>
   {{else}}
     <h4>Select the thief to steal the friends</h4>

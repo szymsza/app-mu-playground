@@ -11,12 +11,28 @@ export default class PersonController extends Controller {
   @tracked edit = false;
   @tracked stealToId = '';
   @tracked selectOptions = [];
+  @tracked authenticated = false;
 
   @action
   async removePerson(person, event) {
     event.preventDefault();
     await person.destroyRecord();
     this.router.transitionTo('people');
+  }
+
+  @action
+  async claimPerson(person, event) {
+    event.preventDefault();
+
+    const account = await this.store.findRecord(
+      'account',
+      this.session.data.authenticated.data.relationships.account.data.id,
+    );
+
+    account.owner = person;
+    person.account = account;
+    await account.save();
+    await person.save();
   }
 
   @action
@@ -66,12 +82,7 @@ export default class PersonController extends Controller {
     super(...arguments);
 
     if (!this.session.isAuthenticated) {
-      this.store.findAll('person').then((x) => {
-        this.selectOptions = x.map((person) => ({
-          value: person.id,
-          label: person.name,
-        }));
-      });
+      this.loadPeopleSelect();
     } else {
       this.loadAuthUser();
     }
@@ -83,7 +94,24 @@ export default class PersonController extends Controller {
       this.session.data.authenticated.data.relationships.account.data.id,
     );
 
-    this.stealToId = (await account.owner).id;
+    const owner = await account.owner;
+
+    if (!owner) {
+      this.loadPeopleSelect();
+      return;
+    }
+
+    this.stealToId = owner.id;
+    this.authenticated = true;
+  }
+
+  async loadPeopleSelect() {
+    this.store.findAll('person').then((x) => {
+      this.selectOptions = x.map((person) => ({
+        value: person.id,
+        label: person.name,
+      }));
+    });
   }
 
   @action

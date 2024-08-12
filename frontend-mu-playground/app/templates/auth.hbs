@@ -2,9 +2,16 @@
 
 {{#if this.session.isAuthenticated}}
   <Jumbo @hideHamster="true" @title="My account">
-    My profile: <LinkTo @route="person" @model={{this.person}}>
-      {{this.person.name}}
-    </LinkTo><br>
+    My profile:
+    {{#if this.person}}
+      <LinkTo @route="person" @model={{this.person}}>
+        {{this.person.name}}
+      </LinkTo>
+    {{else}}
+      You don't have a profile. Go ahead and claim some!
+    {{/if}}
+
+    <br>
     <br>
     <Auth::Logout />
   </Jumbo>
