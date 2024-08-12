@@ -9,14 +9,8 @@
     <LinkTo @route="people" class="menu-people">
       People
     </LinkTo>
-    <LinkTo @route="about" class="menu-about">
-      About
-    </LinkTo>
-    <LinkTo @route="contact" class="menu-contact">
-      Contact
-    </LinkTo>
     <LinkTo @route="auth" class="menu-auth">
-      Authenticate
+      {{if this.session.isAuthenticated "My account" "Login" }}
     </LinkTo>
   </div>
 </nav>
