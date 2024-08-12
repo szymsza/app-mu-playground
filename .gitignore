@@ -5,6 +5,8 @@
 !/data/db/toLoad/*
 /data/files/*
 !/data/files/.gitkeep
+/data/elasticsearch/*
+!/data/elasticsearch/.gitkeep
 
 docker-compose.override.yml
 $HOME

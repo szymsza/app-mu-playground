@@ -64,3 +64,15 @@ services:
     image: semtech/mu-cache:2.0.2
     links:
       - resource:backend
+  search:
+    image: semtech/mu-search:0.9.0
+    links:
+      - database:database
+    volumes:
+      - ./config/search:/config
+  elasticsearch:
+    image: semtech/mu-search-elastic-backend:1.0.0
+    volumes:
+      - ./data/elasticsearch/:/usr/share/elasticsearch/data
+    environment:
+      - discovery.type=single-node

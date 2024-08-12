@@ -1,0 +1,19 @@
+{
+  "automatic_index_updates": true,
+  "eager_indexing_groups": [
+    [ { "name": "public", "variables" : [] } ],
+    [ { "name": "clean", "variables": [] } ]
+  ],
+  "types" : [
+    {
+      "type" : "person",
+      "on_path" : "people",
+      "rdf_type" : "http://xmlns.com/foaf/0.1/Person",
+      "properties" : {
+        "name" : "http://xmlns.com/foaf/0.1/name",
+        "age" : "http://xmlns.com/foaf/0.1/age",
+        "avatar" : "http://xmlns.com/foaf/0.1/img"
+      }
+    }
+  ]
+}
