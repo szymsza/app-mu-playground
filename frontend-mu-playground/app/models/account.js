@@ -6,5 +6,6 @@ export default class AccountModel extends Model {
   @belongsTo('person', {
     inverse: 'account',
     async: true,
-  }) owner;
+  })
+  owner;
 }

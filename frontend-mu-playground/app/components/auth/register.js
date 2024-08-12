@@ -1,19 +1,23 @@
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
+import { service } from '@ember/service';
 
 export default class RegisterComponent extends Component {
   @tracked name = '';
+  @tracked age = '';
   @tracked nickname = '';
   @tracked password = '';
   @tracked passwordConfirmation = '';
+
+  @service store;
 
   @action
   async register(event) {
     event.preventDefault();
 
     const response = await (
-      await fetch('/accounts', {
+      await fetch('/register', {
         method: 'POST',
         body: JSON.stringify({
           data: {
@@ -39,7 +43,18 @@ export default class RegisterComponent extends Component {
       return;
     }
 
-    this.name = this.nickname = this.password = this.passwordConfirmation = '';
+    const accountPerson = await (
+      await this.store.findRecord('account', response.data.id)
+    ).owner;
+    accountPerson.set('age', this.age);
+    await accountPerson.save();
+
+    this.name =
+      this.age =
+      this.nickname =
+      this.password =
+      this.passwordConfirmation =
+        '';
     alert('Registration successful');
   }
 }

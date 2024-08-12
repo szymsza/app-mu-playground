@@ -32,6 +32,10 @@ defmodule Dispatcher do
     Proxy.forward conn, path, "http://resource/people/"
   end
 
+  match "/accounts/*path", %{ layer: :services } do
+    Proxy.forward conn, path, "http://resource/accounts/"
+  end
+
   match "/friends/*path", %{ layer: :services } do
     Proxy.forward conn, path, "http://friends/"
   end
@@ -48,7 +52,7 @@ defmodule Dispatcher do
     Proxy.forward conn, path, "http://file/files/"
   end
 
-  match "/accounts/\*path" do
+  match "/register/\*path" do
     Proxy.forward conn, path, "http://registration/accounts/"
   end
 
